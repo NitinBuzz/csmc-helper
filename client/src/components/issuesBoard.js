@@ -4,6 +4,8 @@ import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { getIssues } from '../actions';
 
+import Issue from './issue';
+
 class IssuesBoard extends Component {
   constructor(props) {
     super(props);
@@ -20,21 +22,23 @@ class IssuesBoard extends Component {
   componentWillUnmount() {}
 
   render() {
-    {
-      console.log(`Render ------ ${JSON.stringify(this.props)}`);
-    }
+    const val =
+      Object.keys(this.props.issues).length > 0 ? (
+        Object.keys(this.props.issues).map(key => {
+          console.log(key);
+          {
+            return <Issue issue={this.props.issues[key]} />;
+          }
+        })
+      ) : (
+        <div>No</div>
+      );
+
     return (
       <div>
         <div>DashBoard</div>
-        <div>
-          {Object.keys(this.props.issues).length > 0 ? (
-            Object.entries(this.props.issues).forEach(([key, value]) => {
-              console.log(key, value);
-            })
-          ) : (
-            <div>No</div>
-          )}
-        </div>
+        <div>{val}</div>
+        <div />
       </div>
     );
   }

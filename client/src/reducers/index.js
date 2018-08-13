@@ -14,7 +14,7 @@ const fakeReducer = (state = {}, action) => {
 const issuesReducer = (state = {}, action) => {
   switch (action.type) {
     case 'FILTER_ISSUES':
-      return state;
+      return { ...action.issues };
     case 'GET_ISSUES':
       return { ...state, ...action.issues };
     default:

@@ -4,15 +4,29 @@ export const decrementCounter = () => ({
   type: 'COUNTER_DECREMENT'
 });
 
-export const filterIssues = key => ({
+export const filterIssues2 = key => ({
   type: 'FILTER_ISSUES',
-  searchKey: key
+  issues: key
 });
 
 export const getIssues2 = issues => ({
   type: 'GET_ISSUES',
   issues
 });
+
+export const filterIssues = key => {
+  return dispatch => {
+    axios
+      .get(`/api/get/issues/search/${key}`)
+      .then(res => {
+        console.log(`Filter Action Get ------- ${JSON.stringify(res.data)}`);
+        dispatch(filterIssues2(res.data));
+      })
+      .catch(error => {
+        console.log(`error: ${error}`);
+      });
+  };
+};
 
 export const getIssues = () => {
   return dispatch => {

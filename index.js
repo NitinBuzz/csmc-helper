@@ -15,6 +15,20 @@ app.use(bodyParser.json());
 app.get('/api/server', function(req, res) {
   res.send('Hello World! from server');
 });
+app.get('/api/get/issues/search/:key', function(req, res) {
+  //
+  helper
+    .getFilteredIssues(req.params.key)
+    .then(issues => {
+      console.log(`issues filter: ${JSON.stringify(`yey ---- : ${issues}`)}`);
+      res.json(issues);
+      res.end();
+    })
+    .catch(error => {
+      res.status(503).send(`DataBase Error, please try again: ${error}`);
+      console.log(`DB Error: ${error}`);
+    });
+});
 
 app.get('/api/get/issues', function(req, res) {
   helper

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { filterIssues } from '../actions';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class SearchBar extends Component {
     // if (!this.props.github.isFetchingUser) {
     //   this.props.actions.fetchUser(this.state);
     // }
-    this.props.filterIssues(this.state.searchKey);
+    this.props.actions.filterIssues(this.state.searchKey);
     console.log(`${this.state.searchKey}`);
   }
 
@@ -47,16 +49,20 @@ const mapStateToProps = state => {
   };
 };
 
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     filterIssues: searchKey =>
+//       dispatch({
+//         type: 'FILTER_ISSUES',
+//         searchKey: searchKey
+//       })
+//   };
+// };
 const mapDispatchToProps = dispatch => {
   return {
-    filterIssues: searchKey =>
-      dispatch({
-        type: 'FILTER_ISSUES',
-        searchKey: searchKey
-      })
+    actions: bindActionCreators({ filterIssues }, dispatch)
   };
 };
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
