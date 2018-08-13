@@ -4,16 +4,17 @@ const _ = require('lodash');
 let issuesObj = {};
 const ref = firebase.database().ref();
 const getIssues = (req, res) => {
-  ref
-    .once('value')
-    .then(snapshot => {
-      _.assign(issuesObj, snapshot.val());
-    })
-    .catch(error => {
-      _.merge(issuesObj, { error });
-    });
-  console.log(`helper: ${JSON.stringify(issuesObj)}`);
-  return issuesObj;
+  return new Promise((resolve, reject) => {
+    ref
+      .once('value')
+      .then(snapshot => {
+        _.assign(issuesObj, snapshot.val());
+        resolve(issuesObj);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
 };
 
 module.exports.getIssues = getIssues;

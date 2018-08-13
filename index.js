@@ -16,19 +16,18 @@ app.get('/api/server', function(req, res) {
   res.send('Hello World! from server');
 });
 
-app.get('/api/issues', function(req, res) {
-  let issues = helper.getIssues();
-  console.log(`issues get: ${JSON.stringify(helper.getIssues())}`);
-  res.send(issues);
-  res.end();
-});
-
-app.post('/api/user', function(req, res) {
-  console.log(req);
-});
-
-app.get('/api/proxy/my/path', function(req, res) {
-  res.send('Hello Worldzzzz! from server');
+app.get('/api/get/issues', function(req, res) {
+  helper
+    .getIssues()
+    .then(issues => {
+      console.log(`issues get: ${JSON.stringify(`yey ---- : ${issues}`)}`);
+      res.json(issues);
+      res.end();
+    })
+    .catch(error => {
+      res.status(503).send(`DataBase Error, please try again: ${error}`);
+      console.log(`DB Error: ${error}`);
+    });
 });
 
 if (process.env.NODE_ENV === 'production') {
