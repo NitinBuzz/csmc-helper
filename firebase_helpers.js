@@ -3,6 +3,7 @@ const database = require('./firebase');
 const _ = require('lodash');
 let issuesObj = {};
 let filteredObj = {};
+let filteredObj2 = {};
 const ref = firebase.database().ref();
 const getIssues = (req, res) => {
   return new Promise((resolve, reject) => {
@@ -36,7 +37,29 @@ const getFilteredIssues = params => {
       });
 
       console.log(`Filter Obj lo -- ${JSON.stringify(filteredObj)}`);
-    }, resolve(filteredObj));
+      filteredObj2 = {};
+      Object.keys(res.issues).map(key => {
+        res.issues[key].tags.forEach(str => {
+          if (str == params) {
+            console.log(`indiloo`);
+            return (filteredObj2 = _.assign({
+              ...filteredObj2,
+              [key]: res.issues[key]
+            }));
+          }
+        });
+      });
+      // _.filter(res.issues, function(o) {
+      //   o.tags.forEach(str => {
+      //     if (str == params) {
+      //       console.log(`indiloo`);
+      //       return _.assign({ ...filteredObj2, ...o });
+      //     }
+      //   });
+      // });
+
+      console.log(`Lolll Filter Obj lo -- ${JSON.stringify(filteredObj2)}`);
+    }, resolve(filteredObj2));
   });
 };
 
