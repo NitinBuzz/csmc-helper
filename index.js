@@ -20,7 +20,6 @@ app.get('/api/get/issues/search/:key', function(req, res) {
   helper
     .getFilteredIssues(req.params.key)
     .then(issues => {
-      console.log(`issues filter: ${JSON.stringify(`yey ---- : ${issues}`)}`);
       res.json(issues);
       res.end();
     })
@@ -34,13 +33,11 @@ app.get('/api/get/issues', function(req, res) {
   helper
     .getIssues()
     .then(issues => {
-      console.log(`issues get: ${JSON.stringify(`yey ---- : ${issues}`)}`);
       res.json(issues);
       res.end();
     })
     .catch(error => {
       res.status(503).send(`DataBase Error, please try again: ${error}`);
-      console.log(`DB Error: ${error}`);
     });
 });
 

@@ -20,49 +20,38 @@ const getIssues = (req, res) => {
 };
 
 const getFilteredIssues = params => {
+  filteredObj2 = {};
   return new Promise((resolve, reject) => {
     getIssues().then(res => {
-      // console.log(`Issues lo -- ${JSON.stringify(issues.issues)}`);
-
-      _.filter(res.issues, function(o) {
-        //console.log(`Filter Obj lo -- ${JSON.stringify(o)}`);
-        o.tags.forEach(str => {
-          console.log(`str -- ${str.toString()} and ${params.toString()}`);
-          if (str == params) {
-            console.log(`trueeeeeeee`);
-            filteredObj = _.assignIn(filteredObj, { o });
-            return;
-          }
-        });
+      new Promise((resolve, reject) => {
+        Object.keys(res.issues).map(key => {
+          res.issues[key].tags.forEach(str => {
+            if (
+              str
+                .toString()
+                .trim()
+                .toLowerCase()
+                .indexOf(
+                  params
+                    .toString()
+                    .trim()
+                    .toLowerCase()
+                ) != -1
+            ) {
+              return (filteredObj2 = _.assign({
+                ...filteredObj2,
+                [key]: res.issues[key]
+              }));
+            }
+          });
+        }),
+          resolve(filteredObj2);
+      }).then(data => {
+        resolve(data);
       });
-
-      console.log(`Filter Obj lo -- ${JSON.stringify(filteredObj)}`);
-      filteredObj2 = {};
-      Object.keys(res.issues).map(key => {
-        res.issues[key].tags.forEach(str => {
-          if (str == params) {
-            console.log(`indiloo`);
-            return (filteredObj2 = _.assign({
-              ...filteredObj2,
-              [key]: res.issues[key]
-            }));
-          }
-        });
-      });
-      // _.filter(res.issues, function(o) {
-      //   o.tags.forEach(str => {
-      //     if (str == params) {
-      //       console.log(`indiloo`);
-      //       return _.assign({ ...filteredObj2, ...o });
-      //     }
-      //   });
-      // });
-
-      console.log(`Lolll Filter Obj lo -- ${JSON.stringify(filteredObj2)}`);
-    }, resolve(filteredObj2));
+    });
   });
 };
 
-//getFilteredIssues
 module.exports.getIssues = getIssues;
 module.exports.getFilteredIssues = getFilteredIssues;
