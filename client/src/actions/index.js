@@ -14,8 +14,9 @@ export const getIssues2 = issues => ({
   issues
 });
 
-export const filterIssues = key => {
+export const filterIssues = (key = 'prod') => {
   return dispatch => {
+    key.toString().trim() == '' ? (key = 'prod') : key;
     axios
       .get(`/api/get/issues/search/${key}`)
       .then(res => {
