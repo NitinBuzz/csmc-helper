@@ -12,6 +12,18 @@ class Issue extends Component {
     // this.state = { issues: {} };
   }
   render() {
+    const title =
+      this.props.issue.name != '' ? this.props.issue.name : 'No Title';
+    const Workaround =
+      this.props.issue.work[3] != ''
+        ? this.props.issue.work[3]
+        : 'No Workaround possible';
+    const move =
+      this.props.issue.work[2] != '' ? this.props.issue.work[2] : 'No Idea';
+    const root =
+      this.props.issue.work[1] != '' ? this.props.issue.work[1] : 'Not Given';
+    const what =
+      this.props.issue.work[0] != '' ? this.props.issue.work[0] : 'NA';
     return (
       <div>
         <p
@@ -43,8 +55,7 @@ class Issue extends Component {
               borderLeft: '2px solid #ff0000'
             }}
           >
-            <span style={{ paddingLeft: '2px' }}>Issue Title:</span>{' '}
-            {this.props.issue.name}
+            <span style={{ paddingLeft: '2px' }}>Issue Title:</span> {title}
           </div>
           <br />
           <p
@@ -61,8 +72,7 @@ class Issue extends Component {
               borderLeft: '2px solid #f1ff00'
             }}
           >
-            <span style={{ paddingLeft: '2px' }}>What:</span>{' '}
-            {this.props.issue.work[0]}
+            <span style={{ paddingLeft: '2px' }}>What:</span> {what}
           </div>
           <br />
           <p
@@ -77,8 +87,7 @@ class Issue extends Component {
               borderLeft: '2px solid #008C00'
             }}
           >
-            <span style={{ paddingLeft: '2px' }}>Root Cause:</span>{' '}
-            {this.props.issue.work[1]}
+            <span style={{ paddingLeft: '2px' }}>Root Cause:</span> {root}
           </div>
           <br />{' '}
           <p
@@ -94,7 +103,7 @@ class Issue extends Component {
             }}
           >
             <span style={{ paddingLeft: '2px' }}>How to move ahead:</span>{' '}
-            {this.props.issue.work[2]}
+            {move}
           </div>
           <br />{' '}
           <p
@@ -110,7 +119,7 @@ class Issue extends Component {
             }}
           >
             <span style={{ paddingLeft: '2px' }}> Workarounds:</span>{' '}
-            {this.props.issue.work[3]}
+            {Workaround}
           </div>
           <br /> <p style={{}} />
         </div>
