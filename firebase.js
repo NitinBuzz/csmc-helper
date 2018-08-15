@@ -11,25 +11,31 @@ const config = {
 firebase.initializeApp(config);
 const database = firebase.database();
 const ref = firebase.database().ref();
-// database.ref('issues').push({
-//   name: 'Unable to Modify Layer2 Networks',
-//   tags: ['Layer2', 'NSX'],
-//   description: 'unable to modify layer2 n/w',
-//   work: [
-//     'unable to modify layer2 n/w',
-//     'same',
-//     'Catch exp on prs and ask NSX to work on it'
-//   ],
-//   date: Date.now()
-// });
-ref.on(
-  'value',
-  function(snapshot) {
-    console.log(`snapshot Value :${snapshot.val()}`);
-  },
-  function(error) {
-    console.log(error);
-  }
-);
+// database
+//   .ref('issues')
+//   .push({
+//     description: 'Cloud Portal not showing Server resource utilisation data',
+//     name: 'Cloud Portal not showing Server resource utilisation data',
+//     tags: ['Server resource utilisation data', 'utilisation data', 'graphs'],
+//     work: [
+//       'Server resource utilisation data not being rendered on UI',
+//       'Data not avalibale on Zenoss',
+//       'Check with Zenoss',
+//       'Ask Zenoss to update their data'
+//     ],
+//     date: Date.now()
+//   })
+//   .then(data => {
+//     return;
+//   });
+// ref.on(
+//   'value',
+//   function(snapshot) {
+//     console.log(`snapshot Value :${snapshot.val()}`);
+//   },
+//   function(error) {
+//     console.log(error);
+//   }
+// );
 
 module.exports = (ref, database);

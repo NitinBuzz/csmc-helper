@@ -7,20 +7,36 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
-      {
-        test: /.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['env', 'react', 'es2015', 'stage-1']
-        }
-      }
-    ],
     rules: [
       {
         use: ['style-loader', 'css-loader', 'sass-loader'],
         test: /\.s?css$/
+      },
+      {
+        loader: 'babel-loader',
+        test: /\.js$/,
+        exclude: /node_modules/
+      },
+
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   },

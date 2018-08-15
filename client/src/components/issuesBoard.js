@@ -12,11 +12,7 @@ class IssuesBoard extends Component {
     // this.state = { issues: {} };
   }
   componentDidMount() {
-    console.log(`get ichues  ${this.props.actions.getIssues()}`);
-    // axios.get('/api/get/issues').then(res => {
-    //   console.log(`Yeyyyyy ------ ${JSON.stringify(res.data.issues)}`);
-    //   this.setState({ issues: res.data.issues });
-    // });
+    //this.props.actions.getIssues();
   }
 
   componentWillUnmount() {}
@@ -25,18 +21,48 @@ class IssuesBoard extends Component {
     const val =
       Object.keys(this.props.issues).length > 0 ? (
         Object.keys(this.props.issues).map(key => {
-          console.log(key);
           {
             return <Issue issue={this.props.issues[key]} />;
           }
         })
       ) : (
-        <div>No</div>
+        <div
+          style={{
+            marginTop: '15px',
+            marginBottom: '35px',
+            color: '#1379CD',
+            fontFamily: 'Ubuntu',
+            fontSize: '20px',
+            fontWeight: 'bold'
+          }}
+        >
+          Please Seach for Helpers - Some keywords [NSX, Socket, vCenter, CSDB,
+          PRS, LOGIN, CURL]
+        </div>
       );
 
     return (
-      <div>
-        <div>DashBoard</div>
+      <div
+        style={{
+          margin: '0',
+          padding: '0',
+          margin: '5px 15px',
+          fontFamily: 'Roboto',
+          textAlign: 'center'
+        }}
+      >
+        <div
+          style={{
+            marginTop: '30px',
+            color: '#ffffff',
+            fontFamily: 'Ubuntu',
+            fontSize: '25px',
+            fontWeight: 'bold',
+            marginBottom: '20px'
+          }}
+        >
+          DashBoard
+        </div>
         <div>{val}</div>
         <div />
       </div>
@@ -45,7 +71,6 @@ class IssuesBoard extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(`eeeeeee: ${JSON.stringify(state)}`);
   return { issues: state.issues };
 };
 

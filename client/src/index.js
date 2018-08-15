@@ -22,7 +22,9 @@ const enhancer = composeEnhancers(
 
 ReactDOM.render(
   <Provider store={createStore(reducers, enhancer)}>
-    <App />
+    <div>
+      <App />
+    </div>
   </Provider>,
   document.querySelector('.container')
 );

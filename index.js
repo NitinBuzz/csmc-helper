@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const path = require('path');
 const ref = require('./firebase');
 const helper = require('./firebase_helpers');
 const nodemailer = require('nodemailer');
@@ -11,7 +12,9 @@ const _ = require('lodash');
 const app = express();
 
 app.use(bodyParser.json());
-
+// app.use(express.static(__dirname + '/public'));
+// app.use(express.static(path.join(__dirname, 'client', 'public')));
+// console.log(`Dirrrrrr: ${path.join(__dirname, 'client', 'public')}`);
 app.get('/api/server', function(req, res) {
   res.send('Hello World! from server');
 });
