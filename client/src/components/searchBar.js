@@ -29,14 +29,11 @@ class SearchBar extends Component {
             marginTop: '35px',
             marginLeft: '15px',
             backgroundColor: '#77bd7a',
-            disabled: 'disabled',
-            cursor: 'not-allowed',
-            pointerEvents: 'none',
+            cursor: 'progress',
             color: 'white',
             padding: '10px 20px',
             border: 'none',
             borderRadius: '4px',
-            cursor: 'pointer',
             float: 'right'
           }}
           type="submit"
@@ -50,7 +47,6 @@ class SearchBar extends Component {
             marginTop: '35px',
             marginLeft: '15px',
             backgroundColor: '#4CAF50',
-
             color: 'white',
             padding: '10px 20px',
             border: 'none',
@@ -75,13 +71,18 @@ class SearchBar extends Component {
           overflow: 'hidden'
         }}
       >
-        <form style={{}} onSubmit={e => e.preventDefault()}>
+        <form
+          style={{ fontFamily: 'Ubuntu' }}
+          onSubmit={e => e.preventDefault()}
+        >
           <input
             style={{
               padding: '10px 10px',
               border: '1px solid #ccc',
               borderRadius: '4px',
-              marginTop: '35px'
+              marginTop: '35px',
+              cursor: 'text',
+              fontFamily: 'Ubuntu'
             }}
             type="text"
             placeholder="Provide a keyword"

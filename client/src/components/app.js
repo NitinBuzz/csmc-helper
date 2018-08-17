@@ -57,7 +57,8 @@ export default class App extends Component {
                   fontWeight: '300',
                   letterSpacing: '1px',
                   wordSpacing: '3px',
-                  marginBottom: '20px'
+                  marginBottom: '20px',
+                  fontFamily: 'Ubuntu'
                 }}
               >
                 CSMC Helper Kit
