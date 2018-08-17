@@ -97,7 +97,6 @@ class SearchBar extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(`State ---- ${JSON.stringify(state)}`);
   return {
     issues: state.issues,
     loader: state.fakeReducer
