@@ -12,6 +12,9 @@ import classes from './../../style/style.css';
 export default class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loader: false
+    };
   }
 
   componentWillUnmount() {}

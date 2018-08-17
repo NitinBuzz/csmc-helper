@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 
 const fakeReducer = (state = {}, action) => {
   switch (action.type) {
+    case 'Loader_Tweak':
+      return action.loader == true ? false : true;
     case 'COUNTER_INCREMENT':
       return state + 1;
     case 'COUNTER_DECREMENT':

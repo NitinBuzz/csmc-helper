@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { filterIssues } from '../actions';
+import { filterIssues, tweakLoader } from '../actions';
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchKey: ''
+      searchKey: '',
+      loader: false
     };
   }
 
@@ -17,10 +18,52 @@ class SearchBar extends Component {
   }
 
   handleGoClick() {
-    this.props.actions.filterIssues(this.state.searchKey);
+    this.props.actions.filterIssues(this.state.searchKey, this.state.loader);
   }
 
   render() {
+    const search =
+      this.props.loader == true ? (
+        <button
+          style={{
+            marginTop: '35px',
+            marginLeft: '15px',
+            backgroundColor: '#77bd7a',
+            disabled: 'disabled',
+            cursor: 'not-allowed',
+            pointerEvents: 'none',
+            color: 'white',
+            padding: '10px 20px',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            float: 'right'
+          }}
+          type="submit"
+          onClick={this.handleGoClick.bind(this)}
+        >
+          Loading
+        </button>
+      ) : (
+        <button
+          style={{
+            marginTop: '35px',
+            marginLeft: '15px',
+            backgroundColor: '#4CAF50',
+
+            color: 'white',
+            padding: '10px 20px',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            float: 'right'
+          }}
+          type="submit"
+          onClick={this.handleGoClick.bind(this)}
+        >
+          Search
+        </button>
+      );
     return (
       <div
         style={{
@@ -46,23 +89,7 @@ class SearchBar extends Component {
             value={this.state.searchKey}
           />
 
-          <button
-            style={{
-              marginTop: '35px',
-              marginLeft: '15px',
-              backgroundColor: '#4CAF50',
-              color: 'white',
-              padding: '10px 20px',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              float: 'right'
-            }}
-            type="submit"
-            onClick={this.handleGoClick.bind(this)}
-          >
-            Search
-          </button>
+          {search}
         </form>
       </div>
     );
@@ -70,14 +97,16 @@ class SearchBar extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(`State ---- ${JSON.stringify(state)}`);
   return {
-    issues: state.issues
+    issues: state.issues,
+    loader: state.fakeReducer
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators({ filterIssues }, dispatch)
+    actions: bindActionCreators({ filterIssues, tweakLoader }, dispatch)
   };
 };
 export default connect(
