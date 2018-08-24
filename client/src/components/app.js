@@ -46,8 +46,8 @@ export default class App extends Component {
               style={{
                 position: 'absolute',
                 top: '2%',
-                right: '81%',
-                transform: 'translateX(' + 19 + '%)'
+                right: '95%',
+                transform: 'translateX(' + 75 + '%)'
               }}
             >
               <p
