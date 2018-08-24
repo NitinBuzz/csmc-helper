@@ -19,6 +19,7 @@ class SearchBar extends Component {
 
   handleGoClick() {
     this.props.actions.filterIssues(this.state.searchKey, this.state.loader);
+    this.setState({ searchKey: '' });
   }
 
   render() {

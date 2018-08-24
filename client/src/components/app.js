@@ -45,6 +45,28 @@ export default class App extends Component {
             <div
               style={{
                 position: 'absolute',
+                top: '2%',
+                right: '81%',
+                transform: 'translateX(' + 19 + '%)'
+              }}
+            >
+              <p
+                style={{
+                  color: '#ffffff',
+                  fontSize: '120%',
+                  fontWeight: '200',
+                  letterSpacing: '1px',
+                  wordSpacing: '3px',
+                  marginBottom: '20px',
+                  fontFamily: 'Pacifico'
+                }}
+              >
+                #AnyThingForChris
+              </p>
+            </div>
+            <div
+              style={{
+                position: 'absolute',
                 top: '40%',
                 left: '50%',
                 transform: 'translate(' - 50 + '%, ' - 50 + '%)'
